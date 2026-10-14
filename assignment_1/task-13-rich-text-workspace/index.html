@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rich Text Workspace Suite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="workspace-app">
+    <!-- Header -->
+    <header class="workspace-header">
+      <div class="header-titles">
+        <span class="badge-tag">Command Pattern &amp; Security Architecture</span>
+        <h1>Rich Text Workspace Suite</h1>
+        <p class="subtitle">Secure Markdown editor with XSS sanitization and an object-oriented Command Pattern undo/redo history engine.</p>
+      </div>
+      <div class="header-status">
+        <span class="security-badge">&#128737; XSS Sanitizer Active</span>
+      </div>
+    </header>
+
+    <!-- Workspace Body -->
+    <main class="editor-workspace">
+      <!-- Toolbar with Command Actions -->
+      <div class="editor-toolbar" role="toolbar" aria-label="Editor Formatting Toolbar">
+        <!-- History Commands -->
+        <div class="tool-group">
+          <button class="tool-btn" id="undoBtn" title="Undo (Ctrl+Z)" disabled>
+            <span class="btn-icon">&#8630;</span> Undo
+          </button>
+          <button class="tool-btn" id="redoBtn" title="Redo (Ctrl+Y)" disabled>
+            <span class="btn-icon">&#8631;</span> Redo
+          </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Formatting Commands -->
+        <div class="tool-group">
+          <button class="tool-btn" id="cmdBold" title="Bold (**text**)"><strong>B</strong></button>
+          <button class="tool-btn" id="cmdItalic" title="Italic (*text*)"><em>I</em></button>
+          <button class="tool-btn" id="cmdH1" title="Heading 1">H1</button>
+          <button class="tool-btn" id="cmdH2" title="Heading 2">H2</button>
+          <button class="tool-btn" id="cmdQuote" title="Blockquote">&ldquo;&rdquo;</button>
+          <button class="tool-btn" id="cmdCode" title="Code Block">&lt;/&gt;</button>
+          <button class="tool-btn" id="cmdList" title="Bulleted List">&bull; List</button>
+          <button class="tool-btn" id="cmdLink" title="Insert Link">&#128279;</button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Security Testing & Sanitize Trigger -->
+        <div class="tool-group ml-auto">
+          <button class="tool-btn btn-xss-test" id="injectXssBtn" title="Test injection of malicious XSS payloads">
+            &#9888; Test XSS Vector
+          </button>
+        </div>
+      </div>
+
+      <!-- Split Editing Workspace -->
+      <div class="workspace-split">
+        <!-- Editor Input -->
+        <div class="editor-pane">
+          <div class="pane-bar">
+            <span>Editor Document</span>
+            <span class="history-stat">History depth: <strong id="historyDepthVal">0</strong> states</span>
+          </div>
+          <textarea 
+            id="editorTextarea" 
+            class="editor-input" 
+            placeholder="Type your markdown here or click toolbar commands to apply changes..."
+            spellcheck="false"
+          ></textarea>
+        </div>
+
+        <!-- Sanitized Live Preview -->
+        <div class="preview-pane">
+          <div class="pane-bar">
+            <span>Sanitized Safe Preview</span>
+            <span class="sanitize-counter" id="sanitizeStatus">0 threats blocked</span>
+          </div>
+          <div id="sanitizedOutput" class="preview-content" aria-live="polite">
+            <!-- Rendered and strictly sanitized HTML output -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- XSS Audit Log / Explanatory Card -->
+    <aside class="audit-card">
+      <h3>Security Sanitization Diagnostics</h3>
+      <p>All rendered output is parsed and strictly filtered through a multi-layer DOM sanitizer that neutralizes inline execution vectors (e.g. <code>&lt;script&gt;</code>, <code>onerror</code>, <code>onload</code>, <code>javascript:</code> protocol URIs) while preserving safe structural tags.</p>
+      <div class="log-entries" id="auditLogEntries">
+        <span class="log-item default-log">Sanitizer engine initialized. Ready to intercept hostile payloads.</span>
+      </div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

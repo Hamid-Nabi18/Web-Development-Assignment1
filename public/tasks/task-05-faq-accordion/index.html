@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expandable Help Center Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="faq-container">
+    <header class="faq-header">
+      <span class="faq-tag">Support Knowledge Base</span>
+      <h1>Expandable Help Center Panel</h1>
+      <p class="faq-subtitle">Explore common technical questions. Clicking any question smoothly expands the answer and auto-collapses any other active section.</p>
+    </header>
+
+    <main class="accordion-panel" id="faqAccordion">
+      <!-- Item 1 (Default Open) -->
+      <div class="accordion-item active">
+        <button class="accordion-header" id="heading-1" aria-expanded="true" aria-controls="collapse-1">
+          <span class="header-title">How does single-item accordion state management work?</span>
+          <span class="chevron-icon" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="accordion-collapse" id="collapse-1" role="region" aria-labelledby="heading-1">
+          <div class="accordion-body">
+            <p>
+              When a user clicks any FAQ header, the event handler checks if the clicked item is already active. If not, it programmatically queries all currently open accordion panels, removes their active class and resets their <code>aria-expanded</code> attribute to <code>false</code>, before smoothly expanding the newly clicked panel.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="accordion-item">
+        <button class="accordion-header" id="heading-2" aria-expanded="false" aria-controls="collapse-2">
+          <span class="header-title">What CSS techniques achieve smooth content expansion?</span>
+          <span class="chevron-icon" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="accordion-collapse" id="collapse-2" role="region" aria-labelledby="heading-2">
+          <div class="accordion-body">
+            <p>
+              Modern web standards support either <code>grid-template-rows: 0fr</code> transitioning to <code>1fr</code> or dynamic <code>max-height</code> calculations with CSS transitions. This avoids layout jumps and produces a butter-smooth 60fps collapse and expand motion.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="accordion-item">
+        <button class="accordion-header" id="heading-3" aria-expanded="false" aria-controls="collapse-3">
+          <span class="header-title">How is keyboard accessibility (a11y) handled?</span>
+          <span class="chevron-icon" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="accordion-collapse" id="collapse-3" role="region" aria-labelledby="heading-3">
+          <div class="accordion-body">
+            <p>
+              Each trigger is a native HTML <code>&lt;button&gt;</code> element, enabling keyboard focus via Tab and activation via Enter or Spacebar. Semantic ARIA properties like <code>aria-expanded</code> and <code>aria-controls</code> communicate real-time state changes to screen readers.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="accordion-item">
+        <button class="accordion-header" id="heading-4" aria-expanded="false" aria-controls="collapse-4">
+          <span class="header-title">Can I deep link directly to a specific question?</span>
+          <span class="chevron-icon" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="accordion-collapse" id="collapse-4" role="region" aria-labelledby="heading-4">
+          <div class="accordion-body">
+            <p>
+              Yes. The component supports URL hash anchors (such as <code>#heading-3</code>). On initial page load, the script detects the hash and automatically expands the requested question while collapsing other items.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="accordion-item">
+        <button class="accordion-header" id="heading-5" aria-expanded="false" aria-controls="collapse-5">
+          <span class="header-title">What data formats are supported for dynamic population?</span>
+          <span class="chevron-icon" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="accordion-collapse" id="collapse-5" role="region" aria-labelledby="heading-5">
+          <div class="accordion-body">
+            <p>
+              The markup can be generated from standard JSON arrays or static HTML. All handlers utilize event delegation on the root container, ensuring newly added items function seamlessly without re-attaching listeners.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="faq-footer">
+      <p>Still have questions? <a href="#support">Contact our technical support engineers</a></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

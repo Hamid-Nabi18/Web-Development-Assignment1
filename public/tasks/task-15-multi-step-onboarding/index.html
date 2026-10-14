@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Step Form with Schema Validation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wizard-container">
+    <header class="wizard-header">
+      <span class="badge-tag">Complex State Architecture</span>
+      <h1>Enterprise Onboarding Wizard</h1>
+      <p class="subtitle">Multi-stage onboarding form with progress indicators, schema validators, and global state caching.</p>
+    </header>
+
+    <!-- Progress Step Indicators -->
+    <nav class="stepper-nav" aria-label="Onboarding Progress">
+      <div class="step-indicator active" data-step="1">
+        <div class="step-circle">1</div>
+        <div class="step-label">Personal Info</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-indicator" data-step="2">
+        <div class="step-circle">2</div>
+        <div class="step-label">Security &amp; Auth</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-indicator" data-step="3">
+        <div class="step-circle">3</div>
+        <div class="step-label">Organization</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step-indicator" data-step="4">
+        <div class="step-circle">4</div>
+        <div class="step-label">Review &amp; Submit</div>
+      </div>
+    </nav>
+
+    <!-- Main Wizard Card -->
+    <main class="wizard-card">
+      <form id="wizardForm" novalidate>
+        <!-- STAGE 1: Personal Details -->
+        <fieldset class="wizard-stage active" id="stage1">
+          <legend class="stage-legend">
+            <h2>Personal &amp; Contact Details</h2>
+            <p>Tell us who you are and how we can reach you.</p>
+          </legend>
+
+          <div class="form-group">
+            <label for="fullName">Full Legal Name <span class="req">*</span></label>
+            <input type="text" id="fullName" class="form-control" placeholder="e.g. Elena Rostova" required>
+            <span class="error-text" id="err-fullName"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="workEmail">Work Email Address <span class="req">*</span></label>
+            <input type="email" id="workEmail" class="form-control" placeholder="elena@company.com" required>
+            <span class="error-text" id="err-workEmail"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phoneNumber">Direct Phone Number <span class="req">*</span></label>
+            <input type="tel" id="phoneNumber" class="form-control" placeholder="+1 (555) 019-2834" required>
+            <span class="error-text" id="err-phoneNumber"></span>
+          </div>
+        </fieldset>
+
+        <!-- STAGE 2: Security & Password -->
+        <fieldset class="wizard-stage" id="stage2">
+          <legend class="stage-legend">
+            <h2>Security &amp; Account Protection</h2>
+            <p>Establish strong credentials for your enterprise workspace.</p>
+          </legend>
+
+          <div class="form-group">
+            <label for="password">Master Password <span class="req">*</span></label>
+            <input type="password" id="password" class="form-control" placeholder="Min 8 chars, 1 uppercase, 1 digit" required>
+            <span class="error-text" id="err-password"></span>
+            <div class="password-criteria-list">
+              <span class="crit-item" id="crit-len">&bull; 8+ characters</span>
+              <span class="crit-item" id="crit-upper">&bull; 1 uppercase letter</span>
+              <span class="crit-item" id="crit-num">&bull; 1 number</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Master Password <span class="req">*</span></label>
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Re-enter password" required>
+            <span class="error-text" id="err-confirmPassword"></span>
+          </div>
+        </fieldset>
+
+        <!-- STAGE 3: Organization Details -->
+        <fieldset class="wizard-stage" id="stage3">
+          <legend class="stage-legend">
+            <h2>Organization &amp; Infrastructure</h2>
+            <p>Help us calibrate your team cluster specifications.</p>
+          </legend>
+
+          <div class="form-group">
+            <label for="companyName">Company / Project Name <span class="req">*</span></label>
+            <input type="text" id="companyName" class="form-control" placeholder="e.g. Apex Systems Inc." required>
+            <span class="error-text" id="err-companyName"></span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="teamSize">Team Size <span class="req">*</span></label>
+              <select id="teamSize" class="form-control" required>
+                <option value="">Select size...</option>
+                <option value="1-10">1 &ndash; 10 Engineers</option>
+                <option value="11-50">11 &ndash; 50 Engineers</option>
+                <option value="51-200">51 &ndash; 200 Engineers</option>
+                <option value="200+">200+ Engineers</option>
+              </select>
+              <span class="error-text" id="err-teamSize"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="primaryCloud">Primary Cloud Provider <span class="req">*</span></label>
+              <select id="primaryCloud" class="form-control" required>
+                <option value="">Select cloud...</option>
+                <option value="Google Cloud Platform (GCP)">Google Cloud Platform (GCP)</option>
+                <option value="Amazon Web Services (AWS)">Amazon Web Services (AWS)</option>
+                <option value="Microsoft Azure">Microsoft Azure</option>
+                <option value="Hybrid / On-Premise">Hybrid / On-Premise</option>
+              </select>
+              <span class="error-text" id="err-primaryCloud"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- STAGE 4: Review & Final Submission -->
+        <fieldset class="wizard-stage" id="stage4">
+          <legend class="stage-legend">
+            <h2>Review Cached Application Details</h2>
+            <p>Verify your cached details before committing provision requests.</p>
+          </legend>
+
+          <div class="summary-card">
+            <div class="summary-row">
+              <span class="summary-label">Full Name:</span>
+              <strong class="summary-val" id="rev-name">&mdash;</strong>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Work Email:</span>
+              <strong class="summary-val" id="rev-email">&mdash;</strong>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Phone:</span>
+              <strong class="summary-val" id="rev-phone">&mdash;</strong>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Company:</span>
+              <strong class="summary-val" id="rev-company">&mdash;</strong>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Team Scale:</span>
+              <strong class="summary-val" id="rev-teamsize">&mdash;</strong>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Cloud Infrastructure:</span>
+              <strong class="summary-val" id="rev-cloud">&mdash;</strong>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Security:</span>
+              <strong class="summary-val" style="color: #10b981;">&#10003; Schema-Compliant Password Encrypted</strong>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Navigation Buttons -->
+        <footer class="wizard-actions">
+          <button type="button" class="btn btn-secondary" id="prevBtn" disabled>&larr; Previous</button>
+          <button type="button" class="btn btn-primary" id="nextBtn">Next Step &rarr;</button>
+          <button type="submit" class="btn btn-submit" id="submitWizardBtn" style="display: none;">Submit Onboarding</button>
+        </footer>
+      </form>
+
+      <!-- Final Completion Screen -->
+      <div class="completion-screen" id="completionScreen" style="display: none;">
+        <div class="check-bubble">&#10003;</div>
+        <h2>Enterprise Onboarding Complete!</h2>
+        <p>Your tenant cluster configuration has been persisted and deployed. An activation credential link has been transmitted to your email.</p>
+        <button type="button" class="btn btn-primary" id="startOverBtn">Start New Onboarding</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Settings Dashboard Tabs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <span class="badge-tag">Account Workspace</span>
+      <h1>Profile Settings Dashboard Tabs</h1>
+      <p class="dashboard-sub">Seamless modular category navigation adhering strictly to WAI-ARIA tabbed accessibility standards.</p>
+    </header>
+
+    <div class="settings-card">
+      <!-- Accessible Tablist Navigation -->
+      <nav class="tablist-nav" role="tablist" aria-label="Settings Categories">
+        <button 
+          class="tab-btn active" 
+          role="tab" 
+          id="tab-profile" 
+          aria-selected="true" 
+          aria-controls="panel-profile" 
+          tabindex="0"
+        >
+          <span class="tab-icon">&#128100;</span>
+          <span class="tab-label">General Profile</span>
+        </button>
+
+        <button 
+          class="tab-btn" 
+          role="tab" 
+          id="tab-security" 
+          aria-selected="false" 
+          aria-controls="panel-security" 
+          tabindex="-1"
+        >
+          <span class="tab-icon">&#128274;</span>
+          <span class="tab-label">Security &amp; Auth</span>
+        </button>
+
+        <button 
+          class="tab-btn" 
+          role="tab" 
+          id="tab-notifications" 
+          aria-selected="false" 
+          aria-controls="panel-notifications" 
+          tabindex="-1"
+        >
+          <span class="tab-icon">&#128276;</span>
+          <span class="tab-label">Notifications</span>
+        </button>
+
+        <button 
+          class="tab-btn" 
+          role="tab" 
+          id="tab-billing" 
+          aria-selected="false" 
+          aria-controls="panel-billing" 
+          tabindex="-1"
+        >
+          <span class="tab-icon">&#128179;</span>
+          <span class="tab-label">Billing &amp; Plans</span>
+        </button>
+      </nav>
+
+      <!-- Tab Panels Container -->
+      <main class="tab-panels">
+        <!-- Panel 1: Profile -->
+        <section 
+          class="tab-panel active" 
+          id="panel-profile" 
+          role="tabpanel" 
+          aria-labelledby="tab-profile" 
+          tabindex="0"
+        >
+          <div class="panel-header">
+            <h2>Public Profile</h2>
+            <p>Manage your public identity, display name, and avatar details.</p>
+          </div>
+
+          <form class="panel-form" onsubmit="event.preventDefault(); showToast('Profile settings saved successfully!');">
+            <div class="avatar-section">
+              <div class="avatar-circle">HR</div>
+              <div class="avatar-controls">
+                <button type="button" class="btn btn-secondary">Upload New Photo</button>
+                <span class="file-hint">JPG, PNG or GIF. Max size 2MB.</span>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" class="form-control" value="Hamid Reza">
+              </div>
+              <div class="form-group">
+                <label for="username">Public Handle</label>
+                <div class="input-prefix-wrapper">
+                  <span class="input-prefix">@</span>
+                  <input type="text" id="username" class="form-control" value="hamid.dev">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea id="bio" rows="3" class="form-control">Senior software architect specializing in high-performance web systems and accessible interfaces.</textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Panel 2: Security -->
+        <section 
+          class="tab-panel" 
+          id="panel-security" 
+          role="tabpanel" 
+          aria-labelledby="tab-security" 
+          tabindex="0" 
+          hidden
+        >
+          <div class="panel-header">
+            <h2>Security &amp; Authentication</h2>
+            <p>Safeguard your account credentials and multi-factor authentication.</p>
+          </div>
+
+          <form class="panel-form" onsubmit="event.preventDefault(); showToast('Security settings updated!');">
+            <div class="form-group">
+              <label for="currentPass">Current Password</label>
+              <input type="password" id="currentPass" class="form-control" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="newPass">New Password</label>
+                <input type="password" id="newPass" class="form-control" placeholder="At least 8 characters">
+              </div>
+              <div class="form-group">
+                <label for="confirmPass">Confirm New Password</label>
+                <input type="password" id="confirmPass" class="form-control" placeholder="Re-type new password">
+              </div>
+            </div>
+
+            <div class="mfa-box">
+              <div class="mfa-info">
+                <h4>Two-Factor Authentication (2FA)</h4>
+                <p>Enhance login defense with hardware keys or an authenticator app.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Update Password</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Panel 3: Notifications -->
+        <section 
+          class="tab-panel" 
+          id="panel-notifications" 
+          role="tabpanel" 
+          aria-labelledby="tab-notifications" 
+          tabindex="0" 
+          hidden
+        >
+          <div class="panel-header">
+            <h2>Notification Preferences</h2>
+            <p>Customize email notifications and system event broadcasts.</p>
+          </div>
+
+          <div class="toggle-list">
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Deployment Status Alerts</h4>
+                <p>Receive notifications whenever automated builds or deployments finish.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Security &amp; Vulnerability Notices</h4>
+                <p>Urgent automated pings when dependency patches or anomalies are detected.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <h4>Product Updates &amp; Feature Digests</h4>
+                <p>Weekly summaries of new platform APIs and tooling features.</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Panel 4: Billing -->
+        <section 
+          class="tab-panel" 
+          id="panel-billing" 
+          role="tabpanel" 
+          aria-labelledby="tab-billing" 
+          tabindex="0" 
+          hidden
+        >
+          <div class="panel-header">
+            <h2>Billing &amp; Subscription Plan</h2>
+            <p>Manage subscription tiers, payment methods, and past invoices.</p>
+          </div>
+
+          <div class="billing-card-status">
+            <div class="billing-tier-badge">Current Tier</div>
+            <h3>Professional Plan &ndash; $49.00 / month</h3>
+            <p>Next automatic renewal: November 1st, 2026. Payment via Mastercard ending in 8842.</p>
+            <div class="billing-actions">
+              <button type="button" class="btn btn-primary">Upgrade to Enterprise</button>
+              <button type="button" class="btn btn-secondary">Download Invoices</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Toast Notification Element -->
+    <div class="toast" id="toastNotification" aria-live="polite"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

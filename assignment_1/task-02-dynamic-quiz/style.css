@@ -1,0 +1,337 @@
+/* Task 2: Dynamic Multiple-Choice Quiz Styles */
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-primary: #6366f1;
+  --accent-primary-hover: #4f46e5;
+  --color-correct: #10b981;
+  --color-correct-bg: rgba(16, 185, 129, 0.15);
+  --color-correct-border: #059669;
+  --color-wrong: #ef4444;
+  --color-wrong-bg: rgba(239, 68, 68, 0.15);
+  --color-wrong-border: #dc2626;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.quiz-container {
+  width: 100%;
+  max-width: 680px;
+}
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.badge {
+  display: inline-block;
+  background-color: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+}
+
+.quiz-header h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Meta Bar & Running Score */
+.quiz-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: rgba(30, 41, 59, 0.8);
+  border: 1px solid var(--card-border);
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.meta-label {
+  color: var(--text-secondary);
+}
+
+.meta-val {
+  font-weight: 700;
+  color: #fff;
+}
+
+.score-highlight {
+  color: #38bdf8;
+  font-size: 1.1rem;
+}
+
+.progress-bar-container {
+  flex: 1;
+  height: 8px;
+  background-color: #334155;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 20%;
+  background: linear-gradient(90deg, #6366f1, #38bdf8);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+/* Main Quiz Card */
+.quiz-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.question-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+/* Options Grid */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.option-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  background-color: #0f172a;
+  border: 2px solid #334155;
+  color: var(--text-primary);
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: var(--accent-primary);
+  background-color: #1e1b4b;
+  transform: translateX(4px);
+}
+
+.option-btn:focus-visible {
+  outline: 2px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+.option-prefix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #334155;
+  color: #cbd5e1;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-right: 0.85rem;
+  flex-shrink: 0;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.option-icon {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+/* Dynamic Choices Color States */
+.option-btn.correct-choice {
+  background-color: var(--color-correct-bg) !important;
+  border-color: var(--color-correct) !important;
+  color: #ecfdf5;
+}
+.option-btn.correct-choice .option-prefix {
+  background-color: var(--color-correct);
+  color: #fff;
+}
+
+.option-btn.wrong-choice {
+  background-color: var(--color-wrong-bg) !important;
+  border-color: var(--color-wrong) !important;
+  color: #fef2f2;
+}
+.option-btn.wrong-choice .option-prefix {
+  background-color: var(--color-wrong);
+  color: #fff;
+}
+
+/* Input Locking: When disabled */
+.option-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* Feedback Banner */
+.feedback-banner {
+  min-height: 2.2rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: none;
+  margin-bottom: 1.25rem;
+}
+
+.feedback-banner.show {
+  display: block;
+}
+
+.feedback-banner.correct {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.feedback-banner.wrong {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+/* Footer & Buttons */
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid #334155;
+}
+
+.btn {
+  padding: 0.75rem 1.6rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-next {
+  background-color: var(--accent-primary);
+  color: #fff;
+}
+
+.btn-next:hover:not(:disabled) {
+  background-color: var(--accent-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-next:disabled {
+  background-color: #334155;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.btn-restart {
+  background-color: var(--accent-primary);
+  color: #fff;
+  margin-top: 1.5rem;
+}
+
+.btn-restart:hover {
+  background-color: var(--accent-primary-hover);
+}
+
+/* Result Screen */
+.result-screen {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.result-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.result-screen h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.score-circle {
+  margin: 1.5rem auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid var(--accent-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.final-score {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.final-percent {
+  font-size: 0.95rem;
+  color: #38bdf8;
+  font-weight: 600;
+}

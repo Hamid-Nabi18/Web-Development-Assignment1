@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List & Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <header class="app-header">
+      <div class="header-titles">
+        <span class="app-tag">Productivity Dashboard</span>
+        <h1>To-Do List &amp; Task Manager</h1>
+        <p class="app-desc">Full CRUD task operations with category filters and persistent web storage.</p>
+      </div>
+      <div class="header-stats" id="quickStats">
+        <div class="stat-badge"><span id="statCompleted">0</span>/<span id="statTotal">0</span> Done</div>
+      </div>
+    </header>
+
+    <!-- Create Task Form -->
+    <section class="task-form-card" aria-label="Create new task">
+      <form id="taskForm" class="task-form">
+        <div class="form-row">
+          <input 
+            type="text" 
+            id="taskTitleInput" 
+            class="input-title" 
+            placeholder="What needs to be done? (e.g. Refactor API module)" 
+            required 
+            autocomplete="off"
+          >
+        </div>
+        <div class="form-row secondary-controls">
+          <div class="select-group">
+            <label for="taskCategorySelect">Category:</label>
+            <select id="taskCategorySelect" class="form-select">
+              <option value="Work">Work</option>
+              <option value="Personal">Personal</option>
+              <option value="Urgent">Urgent</option>
+              <option value="Study">Study</option>
+            </select>
+          </div>
+          <div class="select-group">
+            <label for="taskPrioritySelect">Priority:</label>
+            <select id="taskPrioritySelect" class="form-select">
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-add" id="addTaskBtn">
+            <span class="btn-icon">+</span> Add Task
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Category Filter Controls & Search -->
+    <section class="filter-section" aria-label="Task filters">
+      <div class="filter-pills" id="categoryFilters">
+        <button class="filter-pill active" data-category="All">All <span class="pill-count" id="countAll">0</span></button>
+        <button class="filter-pill" data-category="Work">Work <span class="pill-count" id="countWork">0</span></button>
+        <button class="filter-pill" data-category="Personal">Personal <span class="pill-count" id="countPersonal">0</span></button>
+        <button class="filter-pill" data-category="Urgent">Urgent <span class="pill-count" id="countUrgent">0</span></button>
+        <button class="filter-pill" data-category="Study">Study <span class="pill-count" id="countStudy">0</span></button>
+      </div>
+
+      <div class="status-filters">
+        <button class="status-btn active" data-status="all">All Status</button>
+        <button class="status-btn" data-status="active">Active</button>
+        <button class="status-btn" data-status="completed">Completed</button>
+      </div>
+    </section>
+
+    <!-- Task List Container (Read / Update / Delete) -->
+    <main class="tasks-container">
+      <ul class="task-list" id="taskList" aria-label="Task items">
+        <!-- Rendered dynamically -->
+      </ul>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon">&#128221;</div>
+        <h3>No tasks found in this view</h3>
+        <p>Add a new task above or select a different filter category.</p>
+      </div>
+    </main>
+
+    <!-- Footer Controls -->
+    <footer class="app-footer">
+      <span class="storage-indicator">&#128190; Persisted with LocalStorage</span>
+      <button class="btn-clear-completed" id="clearCompletedBtn">Clear Completed</button>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

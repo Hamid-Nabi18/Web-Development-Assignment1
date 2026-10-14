@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Text Area Monitor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="monitor-wrapper">
+    <header class="monitor-header">
+      <span class="badge-tag">Input Validation Suite</span>
+      <h1>Feedback Text Area Monitor</h1>
+      <p class="subtitle">Live remaining character threshold tracker with dynamic visual states &amp; pattern-validated email verification.</p>
+    </header>
+
+    <main class="card-form">
+      <form id="feedbackForm" novalidate>
+        <!-- Email Input with Pattern Checks -->
+        <div class="form-group">
+          <div class="label-row">
+            <label for="userEmail">Your Email Address</label>
+            <span class="pattern-hint">RFC 5322 Format Check</span>
+          </div>
+          <div class="input-container">
+            <input 
+              type="email" 
+              id="userEmail" 
+              class="form-input" 
+              placeholder="e.g. alex.chen@enterprise.io" 
+              required
+              autocomplete="email"
+            >
+            <span class="validation-status-icon" id="emailStatusIcon" aria-hidden="true"></span>
+          </div>
+          <p class="error-msg" id="emailErrorMsg">Please enter a valid email address (e.g. name@domain.com).</p>
+          <p class="success-msg" id="emailSuccessMsg">&#10003; Email pattern verified.</p>
+        </div>
+
+        <!-- Feedback Text Area with Live Counter Monitor -->
+        <div class="form-group">
+          <div class="label-row">
+            <label for="feedbackText">Feedback Description</label>
+            <span class="max-threshold-tag">Max Limit: <strong id="maxLimitVal">250</strong> chars</span>
+          </div>
+
+          <div class="textarea-container">
+            <textarea 
+              id="feedbackText" 
+              class="form-textarea" 
+              rows="6" 
+              maxlength="250"
+              placeholder="Share your detailed feedback, technical suggestions, or bug report..."
+            ></textarea>
+
+            <!-- Remaining Characters Bar & Badge -->
+            <div class="counter-footer" id="counterFooter">
+              <div class="meter-bar-track">
+                <div class="meter-bar-fill" id="meterFill"></div>
+              </div>
+              <div class="counter-badge" id="counterBadge">
+                <span id="remainingCount">250</span> characters remaining
+              </div>
+            </div>
+          </div>
+          <p class="warning-callout" id="warningCallout"></p>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-submit" id="submitBtn" disabled>
+            Submit Feedback
+          </button>
+        </div>
+      </form>
+
+      <!-- Feedback Success Overlay -->
+      <div class="submission-success" id="submissionSuccess" style="display: none;">
+        <div class="success-bubble">&#10003;</div>
+        <h3>Feedback Received!</h3>
+        <p id="submittedSummary"></p>
+        <button type="button" class="btn btn-reset" id="resetFormBtn">Submit Another Response</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

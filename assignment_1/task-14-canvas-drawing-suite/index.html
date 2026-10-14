@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Canvas Drawing Suite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="canvas-app">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-titles">
+        <span class="badge-tag">HTML5 Graphics &amp; Canvas API</span>
+        <h1>Interactive Canvas Drawing Suite</h1>
+        <p class="subtitle">Freehand vector whiteboard featuring shape generation, stroke undo history, and PNG artwork export.</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-export" id="exportBtn">
+          <span class="btn-icon">&#128190;</span> Export Artwork (.PNG)
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="drawing-workspace">
+      <!-- Toolbox Bar -->
+      <aside class="drawing-toolbox">
+        <!-- Tools & Shapes -->
+        <div class="tool-section">
+          <h3>Tools &amp; Shapes</h3>
+          <div class="tool-grid" role="radiogroup" aria-label="Drawing tool selector">
+            <button class="tool-choice active" data-tool="brush" title="Freehand Brush">
+              <span class="tool-icon">&#9999;</span>
+              <span class="tool-name">Brush</span>
+            </button>
+            <button class="tool-choice" data-tool="line" title="Straight Line">
+              <span class="tool-icon">&#9586;</span>
+              <span class="tool-name">Line</span>
+            </button>
+            <button class="tool-choice" data-tool="rect" title="Rectangle Shape">
+              <span class="tool-icon">&#9645;</span>
+              <span class="tool-name">Rectangle</span>
+            </button>
+            <button class="tool-choice" data-tool="circle" title="Circle Shape">
+              <span class="tool-icon">&#9711;</span>
+              <span class="tool-name">Circle</span>
+            </button>
+            <button class="tool-choice" data-tool="eraser" title="Eraser Tool">
+              <span class="tool-icon">&#10060;</span>
+              <span class="tool-name">Eraser</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Color Picker & Palette -->
+        <div class="tool-section">
+          <h3>Stroke Color</h3>
+          <div class="color-picker-row">
+            <input type="color" id="nativeColorPicker" value="#3b82f6" aria-label="Custom color picker">
+            <span class="color-hex-label" id="colorHexLabel">#3B82F6</span>
+          </div>
+          <div class="color-presets" id="colorPresets">
+            <button class="color-swatch active" data-color="#3b82f6" style="background-color: #3b82f6;" title="Blue"></button>
+            <button class="color-swatch" data-color="#10b981" style="background-color: #10b981;" title="Emerald"></button>
+            <button class="color-swatch" data-color="#f59e0b" style="background-color: #f59e0b;" title="Amber"></button>
+            <button class="color-swatch" data-color="#ef4444" style="background-color: #ef4444;" title="Red"></button>
+            <button class="color-swatch" data-color="#a855f7" style="background-color: #a855f7;" title="Purple"></button>
+            <button class="color-swatch" data-color="#ffffff" style="background-color: #ffffff;" title="White"></button>
+          </div>
+        </div>
+
+        <!-- Stroke Width Slider -->
+        <div class="tool-section">
+          <div class="slider-header">
+            <h3>Stroke Size</h3>
+            <span class="size-val" id="sizeVal">4px</span>
+          </div>
+          <input type="range" id="strokeSizeSlider" min="1" max="40" value="4" class="slider-input">
+        </div>
+
+        <!-- Drawing State Controls (Undo, Redo, Clear) -->
+        <div class="tool-section">
+          <h3>State Controls</h3>
+          <div class="history-btn-group">
+            <button class="btn btn-control" id="undoStrokeBtn" disabled title="Undo last stroke">
+              &#8630; Undo Stroke
+            </button>
+            <button class="btn btn-control" id="redoStrokeBtn" disabled title="Redo undone stroke">
+              &#8631; Redo Stroke
+            </button>
+          </div>
+          <button class="btn btn-clear-canvas" id="clearCanvasBtn">
+            &#128465; Clear Canvas
+          </button>
+        </div>
+      </aside>
+
+      <!-- Canvas Viewport -->
+      <section class="canvas-viewport">
+        <canvas id="drawingCanvas" width="900" height="600"></canvas>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

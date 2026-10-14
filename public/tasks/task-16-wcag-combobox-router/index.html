@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WCAG Combobox & Custom Router</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="router-app">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-titles">
+        <span class="badge-tag">Accessibility &amp; Routing Engine</span>
+        <h1>WCAG Combobox &amp; Custom Router</h1>
+        <p class="subtitle">W3C WAI-ARIA 1.2 compliant combobox with a pure vanilla JavaScript client-side parameterized router.</p>
+      </div>
+
+      <!-- Navigation Bar -->
+      <nav class="spa-nav" aria-label="Application SPA Navigation">
+        <a href="#/" class="nav-link" data-route="/">Dashboard</a>
+        <a href="#/items" class="nav-link" data-route="/items">Service Catalog</a>
+        <a href="#/analytics/performance" class="nav-link" data-route="/analytics/:metric">Performance Metrics</a>
+        <a href="#/analytics/security" class="nav-link" data-route="/analytics/:metric">Security Logs</a>
+      </nav>
+    </header>
+
+    <!-- Top Bar with WCAG Keyboard Accessible Combobox -->
+    <section class="combobox-section" aria-label="Combobox quick jump">
+      <div class="combobox-label-row">
+        <label for="wcagComboboxInput" id="comboboxLabel" class="combobox-label">
+          Keyboard-Navigable WCAG Combobox (Quick Jump):
+        </label>
+        <span class="a11y-instructions">Use &uarr;&darr; arrows to navigate, Enter to select, Esc to close</span>
+      </div>
+
+      <div class="combobox-wrapper">
+        <div class="input-with-button">
+          <!-- WAI-ARIA 1.2 Combobox Input -->
+          <input 
+            type="text" 
+            id="wcagComboboxInput" 
+            role="combobox" 
+            aria-autocomplete="list" 
+            aria-expanded="false" 
+            aria-haspopup="listbox" 
+            aria-controls="comboboxListbox" 
+            aria-labelledby="comboboxLabel"
+            aria-activedescendant=""
+            autocomplete="off" 
+            placeholder="Search & jump to any microservice or metric..."
+            class="combobox-input"
+          >
+          <button 
+            type="button" 
+            id="comboboxToggleBtn" 
+            class="combobox-toggle-btn" 
+            tabindex="-1" 
+            aria-label="Toggle options popup"
+          >
+            &#9662;
+          </button>
+        </div>
+
+        <!-- Accessible Listbox Popup -->
+        <ul 
+          id="comboboxListbox" 
+          role="listbox" 
+          aria-labelledby="comboboxLabel" 
+          class="combobox-listbox" 
+          hidden
+        >
+          <!-- Options populated dynamically -->
+        </ul>
+      </div>
+
+      <!-- Screen reader status live region -->
+      <div id="comboboxAnnouncer" class="sr-only" aria-live="polite"></div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+      <span class="bc-label">Active Route:</span>
+      <code id="currentRouteDisplay">#/</code>
+    </nav>
+
+    <!-- Dynamic SPA Router Viewport -->
+    <main class="spa-viewport" id="spaViewport" aria-live="polite">
+      <!-- Mapped Dynamic View Render Functions Inject Here -->
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

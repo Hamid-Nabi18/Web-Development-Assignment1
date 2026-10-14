@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trello-Style Workflow Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="kanban-app">
+    <!-- Header -->
+    <header class="kanban-header">
+      <div class="header-info">
+        <span class="badge-tag">Architecture &amp; State</span>
+        <h1>Trello-Style Workflow Manager</h1>
+        <p class="subtitle">HTML5 Drag &amp; Drop interaction APIs paired with immutable state transitions &amp; browser persistence.</p>
+      </div>
+      <div class="header-controls">
+        <button class="btn btn-primary" id="addCardModalBtn">+ New Card</button>
+        <button class="btn btn-secondary" id="resetBoardBtn">Reset Default Board</button>
+      </div>
+    </header>
+
+    <!-- Multi-Column Kanban Board -->
+    <main class="board-container" id="boardContainer">
+      <!-- Dynamic Columns rendered here via script -->
+    </main>
+
+    <!-- Modal for adding new task card -->
+    <div class="modal-overlay" id="addCardModal" style="display: none;">
+      <div class="modal-card">
+        <h3>Create New Task Card</h3>
+        <form id="createCardForm">
+          <div class="form-group">
+            <label for="cardTitleInput">Card Title</label>
+            <input type="text" id="cardTitleInput" class="form-control" required placeholder="e.g. Implement OAuth token refresh">
+          </div>
+          <div class="form-group">
+            <label for="cardDescInput">Description / Acceptance Criteria</label>
+            <textarea id="cardDescInput" rows="3" class="form-control" placeholder="Outline specific technical deliverables..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cardColSelect">Target Column</label>
+              <select id="cardColSelect" class="form-control">
+                <option value="todo">To Do</option>
+                <option value="in_progress">In Progress</option>
+                <option value="review">Review</option>
+                <option value="done">Done</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cardTagSelect">Tag Label</label>
+              <select id="cardTagSelect" class="form-control">
+                <option value="Backend">Backend</option>
+                <option value="Frontend">Frontend</option>
+                <option value="DevOps">DevOps</option>
+                <option value="Design">Design</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="cancelCardModalBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add Card</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

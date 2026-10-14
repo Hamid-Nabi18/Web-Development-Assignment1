@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes App & Quote Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="app-header">
+      <div class="header-left">
+        <span class="badge-tag">Productivity &amp; Typography</span>
+        <h1>Notes App &amp; Quote Generator</h1>
+      </div>
+
+      <!-- Quick stats / word count -->
+      <div class="header-right">
+        <div class="stat-pill"><span id="wordCount">0</span> Words</div>
+        <div class="stat-pill"><span id="charCount">0</span> Chars</div>
+      </div>
+    </header>
+
+    <!-- Random Quote Generator Widget -->
+    <section class="quote-widget" aria-label="Inspirational quote generator">
+      <div class="quote-content">
+        <span class="quote-icon">&ldquo;</span>
+        <blockquote class="quote-text" id="quoteText">Any fool can write code that a computer can understand. Good programmers write code that humans can understand.</blockquote>
+        <cite class="quote-author" id="quoteAuthor">&mdash; Martin Fowler</cite>
+      </div>
+      <div class="quote-actions">
+        <button class="btn btn-quote-action" id="newQuoteBtn" title="Generate another random quote">
+          <span class="btn-icon">&#128260;</span> New Quote
+        </button>
+        <button class="btn btn-quote-action btn-copy" id="copyQuoteBtn" title="Copy quote to clipboard">
+          <span class="btn-icon" id="copyIcon">&#128203;</span> <span id="copyBtnText">Copy Quote</span>
+        </button>
+        <button class="btn btn-quote-action" id="insertQuoteBtn" title="Insert quote into markdown editor">
+          <span class="btn-icon">&#10133;</span> Insert Into Note
+        </button>
+      </div>
+    </section>
+
+    <!-- Dual-Pane Text Editor -->
+    <main class="dual-pane-container">
+      <!-- Left Pane: Markdown Source Editor -->
+      <section class="pane pane-editor">
+        <div class="pane-header">
+          <span class="pane-title">&#9997; Markdown Source Input</span>
+          <div class="editor-tools">
+            <button class="tool-btn" id="clearEditorBtn" title="Clear note">Clear</button>
+            <button class="tool-btn" id="sampleEditorBtn" title="Load sample markdown">Load Sample</button>
+          </div>
+        </div>
+        <textarea 
+          id="markdownInput" 
+          class="markdown-textarea" 
+          placeholder="Type or paste markdown syntax here (e.g. # Header, **bold**, `code`, - bullet lists)..."
+          spellcheck="false"
+        ></textarea>
+      </section>
+
+      <!-- Right Pane: Live HTML Rendered Preview -->
+      <section class="pane pane-preview">
+        <div class="pane-header">
+          <span class="pane-title">&#128065; Live HTML Rendered Preview</span>
+          <span class="render-badge">Instant Sync</span>
+        </div>
+        <div id="htmlPreview" class="preview-output" aria-live="polite">
+          <!-- Live HTML parsed from markdown rendered here -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="copy-toast" id="copyToast" role="status">Copied to clipboard!</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

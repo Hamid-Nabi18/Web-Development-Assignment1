@@ -1,0 +1,8 @@
+{
+  "name": "Assignment 1 - Web Development & Design",
+  "description": "Complete implementation of all 16 foundational, intermediate, and advanced tasks using semantic HTML, responsive CSS, and vanilla JavaScript.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flash Sale Timer & Carousel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sale-wrapper">
+    <header class="sale-header">
+      <span class="flash-badge">&#9889; Limited Flash Event</span>
+      <h1 class="sale-title">Flash Sale Timer &amp; Carousel</h1>
+      <p class="sale-subtitle">Live daily segment countdown paired with a responsive hardware and gear product carousel.</p>
+
+      <!-- Live Promotional Countdown Clock -->
+      <div class="countdown-clock" aria-label="Flash sale countdown timer">
+        <div class="time-block">
+          <span class="time-num" id="daysVal">00</span>
+          <span class="time-label">Days</span>
+        </div>
+        <span class="time-sep">:</span>
+        <div class="time-block">
+          <span class="time-num" id="hoursVal">00</span>
+          <span class="time-label">Hours</span>
+        </div>
+        <span class="time-sep">:</span>
+        <div class="time-block">
+          <span class="time-num" id="minsVal">00</span>
+          <span class="time-label">Minutes</span>
+        </div>
+        <span class="time-sep">:</span>
+        <div class="time-block">
+          <span class="time-num highlight-sec" id="secsVal">00</span>
+          <span class="time-label">Seconds</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Responsive Product Carousel -->
+    <main class="carousel-section">
+      <div class="carousel-container" id="carouselContainer">
+        <!-- Carousel Track -->
+        <div class="carousel-track" id="carouselTrack" aria-live="polite">
+          <!-- Slide 1 -->
+          <article class="carousel-slide active" data-slide="0">
+            <div class="product-card">
+              <div class="product-badge">-45% OFF</div>
+              <div class="product-visual gear-keyboard">
+                <span class="visual-emoji">&#9000;</span>
+              </div>
+              <div class="product-details">
+                <span class="category-tag">Peripherals</span>
+                <h2 class="product-name">Apex Pro Mechanical Key-Deck</h2>
+                <p class="product-desc">Hot-swappable tactile linear switches with aircraft-grade milled aluminum chassis.</p>
+                <div class="price-row">
+                  <span class="current-price">$109.99</span>
+                  <span class="original-price">$199.99</span>
+                  <button class="btn-buy" type="button">Claim Deal</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 2 -->
+          <article class="carousel-slide" data-slide="1">
+            <div class="product-card">
+              <div class="product-badge">-35% OFF</div>
+              <div class="product-visual gear-headset">
+                <span class="visual-emoji">&#127911;</span>
+              </div>
+              <div class="product-details">
+                <span class="category-tag">Audio Engineering</span>
+                <h2 class="product-name">AcousticSphere Studio Monitors</h2>
+                <p class="product-desc">Active noise-canceling open-back planar headphones with lossless low-latency wireless.</p>
+                <div class="price-row">
+                  <span class="current-price">$189.50</span>
+                  <span class="original-price">$290.00</span>
+                  <button class="btn-buy" type="button">Claim Deal</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 3 -->
+          <article class="carousel-slide" data-slide="2">
+            <div class="product-card">
+              <div class="product-badge">-50% OFF</div>
+              <div class="product-visual gear-display">
+                <span class="visual-emoji">&#128421;</span>
+              </div>
+              <div class="product-details">
+                <span class="category-tag">Displays</span>
+                <h2 class="product-name">UltraWide 38" Curved 4K OLED</h2>
+                <p class="product-desc">144Hz refresh rate, 99.5% DCI-P3 color gamut, and 90W single-cable USB-C power delivery.</p>
+                <div class="price-row">
+                  <span class="current-price">$649.00</span>
+                  <span class="original-price">$1,299.00</span>
+                  <button class="btn-buy" type="button">Claim Deal</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 4 -->
+          <article class="carousel-slide" data-slide="3">
+            <div class="product-card">
+              <div class="product-badge">-40% OFF</div>
+              <div class="product-visual gear-mouse">
+                <span class="visual-emoji">&#128433;</span>
+              </div>
+              <div class="product-details">
+                <span class="category-tag">Ergonomics</span>
+                <h2 class="product-name">Vektor Ergonomic Precision Mouse</h2>
+                <p class="product-desc">Ultra-light 54g carbon chassis, 30K DPI optical sensor, and zero-drag paracord charging.</p>
+                <div class="price-row">
+                  <span class="current-price">$59.99</span>
+                  <span class="original-price">$99.99</span>
+                  <button class="btn-buy" type="button">Claim Deal</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Carousel Switching Controls -->
+        <button class="carousel-control prev" id="prevSlideBtn" aria-label="Previous product slide">&#10094;</button>
+        <button class="carousel-control next" id="nextSlideBtn" aria-label="Next product slide">&#10095;</button>
+      </div>
+
+      <!-- Active Pagination Dots -->
+      <nav class="carousel-pagination" id="carouselPagination" aria-label="Carousel pagination dots">
+        <button class="dot-btn active" data-index="0" aria-label="Slide 1: Apex Pro Mechanical Key-Deck"></button>
+        <button class="dot-btn" data-index="1" aria-label="Slide 2: AcousticSphere Studio Monitors"></button>
+        <button class="dot-btn" data-index="2" aria-label="Slide 3: UltraWide 38 Curved OLED"></button>
+        <button class="dot-btn" data-index="3" aria-label="Slide 4: Vektor Ergonomic Precision Mouse"></button>
+      </nav>
+
+      <div class="carousel-status-bar">
+        <span class="slide-counter" id="slideCounter">Slide 1 of 4</span>
+        <button class="btn-autoplay-toggle" id="autoplayToggle">Pause Auto-play</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

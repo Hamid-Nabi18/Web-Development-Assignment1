@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Filter & Infinite Scroll</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="explorer-app">
+    <!-- Header -->
+    <header class="explorer-header">
+      <div class="header-content">
+        <span class="badge-tag">High-Performance Virtual Stream</span>
+        <h1>Search Filter &amp; Infinite Scroll</h1>
+        <p class="subtitle">5,000 simulated server metrics records with debounced search and Intersection Observer chunk streaming.</p>
+      </div>
+
+      <!-- Live Counters -->
+      <div class="metrics-pill-group">
+        <div class="metric-pill">Total: <strong id="totalRecordsCount">5,000</strong></div>
+        <div class="metric-pill">Matching: <strong id="matchingRecordsCount">5,000</strong></div>
+        <div class="metric-pill">Rendered: <strong id="loadedRecordsCount">0</strong></div>
+      </div>
+    </header>
+
+    <!-- Controls Bar -->
+    <section class="controls-card">
+      <div class="search-input-wrapper">
+        <span class="search-icon">&#128269;</span>
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Filter by server hostname, IP, region, or service..."
+          autocomplete="off"
+        >
+        <span class="debounce-indicator" id="debounceIndicator">Ready</span>
+      </div>
+
+      <div class="filters-row">
+        <div class="filter-group">
+          <label for="statusFilter">Status:</label>
+          <select id="statusFilter" class="filter-select">
+            <option value="All">All Statuses</option>
+            <option value="Healthy">Healthy</option>
+            <option value="Degraded">Degraded</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="regionFilter">Region:</label>
+          <select id="regionFilter" class="filter-select">
+            <option value="All">All Regions</option>
+            <option value="us-east-1">us-east-1 (N. Virginia)</option>
+            <option value="us-west-2">us-west-2 (Oregon)</option>
+            <option value="eu-central-1">eu-central-1 (Frankfurt)</option>
+            <option value="ap-southeast-1">ap-southeast-1 (Singapore)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sortOrder">Sort:</label>
+          <select id="sortOrder" class="filter-select">
+            <option value="id_asc">ID (Ascending)</option>
+            <option value="latency_asc">Lowest Latency</option>
+            <option value="cpu_desc">Highest CPU</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Records Stream Container -->
+    <main class="records-container" id="recordsContainer">
+      <div class="records-table-header">
+        <span class="col-head col-id">ID / Hostname</span>
+        <span class="col-head col-ip">IP Address</span>
+        <span class="col-head col-region">Region</span>
+        <span class="col-head col-status">Status</span>
+        <span class="col-head col-metrics">Load &amp; Latency</span>
+      </div>
+
+      <div class="records-list" id="recordsList" role="feed" aria-busy="false">
+        <!-- Rendered chunks injected here -->
+      </div>
+
+      <!-- Intersection Observer Sentinel Target -->
+      <div class="sentinel-wrapper" id="scrollSentinel">
+        <div class="loading-spinner" id="loadingSpinner"></div>
+        <p class="sentinel-text" id="sentinelText">Loading next chunk of records...</p>
+      </div>
+
+      <!-- No Results State -->
+      <div class="no-results" id="noResults" style="display: none;">
+        <span class="no-res-icon">&#128269;</span>
+        <h3>No matching telemetry records</h3>
+        <p>Try refining your search keyword or relaxing status/region filters.</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

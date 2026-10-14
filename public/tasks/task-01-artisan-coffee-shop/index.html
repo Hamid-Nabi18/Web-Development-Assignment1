@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artisan Coffee Shop Landing Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#home" class="brand-logo">
+        <span class="logo-icon">&#9749;</span>
+        <span class="logo-text">Velvet & Roast</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="site-nav" id="siteNav">
+        <ul>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#menu" class="nav-link">Our Menu</a></li>
+          <li><a href="#story" class="nav-link">Our Story</a></li>
+          <li><a href="#hours" class="nav-link">Hours & Visit</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="home">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <span class="hero-badge">Small Batch & Single Origin</span>
+        <h1 class="hero-title">Crafted with Patience, Poured with Passion.</h1>
+        <p class="hero-subtitle">
+          Ethically sourced specialty beans, roasted on-site in micro batches. Experience pure terroir in every cup.
+        </p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">Explore Menu</a>
+          <a href="#hours" class="btn btn-outline">Visit Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section with CSS Grid -->
+    <section class="menu-section" id="menu">
+      <div class="section-header">
+        <span class="section-tag">Curated Selections</span>
+        <h2 class="section-title">Artisan Coffee & Bakery Menu</h2>
+        <p class="section-desc">Each cup is individually brewed using precision extraction methods and single-farm crops.</p>
+      </div>
+
+      <!-- Multi-column CSS Grid -->
+      <div class="menu-grid">
+        <!-- Item 1 -->
+        <article class="menu-card">
+          <div class="menu-card-header">
+            <span class="item-tag">Espresso Bar</span>
+            <span class="item-price">$4.50</span>
+          </div>
+          <h3 class="item-title">Single Origin Espresso</h3>
+          <p class="item-origin">Yirgacheffe, Ethiopia &bull; Washed Process</p>
+          <p class="item-desc">Bright notes of bergamot, candied lemon zest, and wild jasmine with silky honey body.</p>
+        </article>
+
+        <!-- Item 2 -->
+        <article class="menu-card featured-item">
+          <div class="menu-card-header">
+            <span class="item-tag highlight">Signature</span>
+            <span class="item-price">$6.50</span>
+          </div>
+          <h3 class="item-title">Geisha V60 Pour-Over</h3>
+          <p class="item-origin">Boquete, Panama &bull; Natural Anaerobic</p>
+          <p class="item-desc">Rare micro-lot featuring delicate peach blossom, white tea aroma, and ripe papaya sweetness.</p>
+        </article>
+
+        <!-- Item 3 -->
+        <article class="menu-card">
+          <div class="menu-card-header">
+            <span class="item-tag">Cold Crafted</span>
+            <span class="item-price">$5.25</span>
+          </div>
+          <h3 class="item-title">Nitro Cascara Cold Brew</h3>
+          <p class="item-origin">Tarraz&uacute;, Costa Rica &bull; 24-Hour Steep</p>
+          <p class="item-desc">Infused with pure nitrogen for a Guinness-like velvet foam head, dark chocolate and cherry undertones.</p>
+        </article>
+
+        <!-- Item 4 -->
+        <article class="menu-card">
+          <div class="menu-card-header">
+            <span class="item-tag">Milk & Steam</span>
+            <span class="item-price">$5.00</span>
+          </div>
+          <h3 class="item-title">Oat Milk Flat White</h3>
+          <p class="item-origin">Huila, Colombia &bull; Micro-foamed Minor Figures</p>
+          <p class="item-desc">Rich double ristretto harmonized with velvety steamed oat milk, presenting roasted hazelnut notes.</p>
+        </article>
+
+        <!-- Item 5 -->
+        <article class="menu-card">
+          <div class="menu-card-header">
+            <span class="item-tag">Specialty Spiced</span>
+            <span class="item-price">$5.75</span>
+          </div>
+          <h3 class="item-title">Cardamom & Orange Cortado</h3>
+          <p class="item-origin">Antigua, Guatemala &bull; Whole Milk</p>
+          <p class="item-desc">Equal parts espresso and warm milk infused with organic crushed green cardamom pods and orange oil.</p>
+        </article>
+
+        <!-- Item 6 -->
+        <article class="menu-card">
+          <div class="menu-card-header">
+            <span class="item-tag">Bakery</span>
+            <span class="item-price">$4.75</span>
+          </div>
+          <h3 class="item-title">Twice-Baked Almond Croissant</h3>
+          <p class="item-origin">House-Baked Daily &bull; French Cultured Butter</p>
+          <p class="item-desc">Laminated pastry filled with aromatic frangipane almond cream, topped with toasted sliced almonds.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+      <div class="story-container">
+        <div class="story-text">
+          <span class="section-tag">Direct Trade Relationship</span>
+          <h2 class="section-title">Rooted in Sustainable Craft</h2>
+          <p>
+            Founded in 2021, Velvet &amp; Roast partners directly with independent growers across Latin America and East Africa.
+            By paying 150% above fair trade minimums, we support regenerative agriculture and multi-generational farms.
+          </p>
+          <p>
+            Our beans are roasted weekly in our restored cast-iron drum roaster, calibrated meticulously to unlock the unique aromatic identity of every harvest.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hours and Location Section -->
+    <section class="hours-section" id="hours">
+      <div class="hours-container">
+        <div class="hours-card">
+          <h3>Brewing Hours</h3>
+          <ul class="hours-list">
+            <li><span>Monday &ndash; Friday</span> <strong>06:30 AM &ndash; 06:00 PM</strong></li>
+            <li><span>Saturday &ndash; Sunday</span> <strong>07:30 AM &ndash; 07:00 PM</strong></li>
+          </ul>
+        </div>
+        <div class="location-card">
+          <h3>Coffee Bar Location</h3>
+          <p>428 Heritage Cobblestone Way<br>Roastery District, Suite 104<br>hello@velvetroastcoffee.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Semantic Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <p class="footer-logo">&#9749; Velvet &amp; Roast Coffee Co.</p>
+        <p class="footer-tagline">Small batch roasters dedicated to the craft of exceptional coffee.</p>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2026 Velvet &amp; Roast. All rights reserved. Built with semantic HTML &amp; responsive CSS Grid.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('navToggle');
+    const siteNav = document.getElementById('siteNav');
+    if (navToggle && siteNav) {
+      navToggle.addEventListener('click', () => {
+        siteNav.classList.toggle('nav-open');
+      });
+    }
+  </script>
+</body>
+</html>

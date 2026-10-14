@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Sign-Up Overlay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-container">
+    <header class="page-hero">
+      <span class="pill-badge">Interactive UX Component</span>
+      <h1>Newsletter Sign-Up Overlay</h1>
+      <p class="hero-desc">
+        Click the button below to trigger the accessible modal overlay. Experience smooth backdrop dimming, page scroll locking, and triple closure interactions (close icon, backdrop click, or keyboard Escape key).
+      </p>
+      <button class="btn btn-trigger" id="openModalBtn" aria-haspopup="dialog">
+        <span class="btn-icon">&#128236;</span> Open Newsletter Modal
+      </button>
+    </header>
+
+    <!-- Scrollable dummy content to demonstrate page scroll locking -->
+    <section class="demo-content">
+      <h2>Why Page Scroll Locking Matters</h2>
+      <p>
+        When modal dialogues appear on top of a webpage, maintaining the background scroll position without allowing the underlying page body to scroll is an essential UX requirement. Notice how when the overlay opens, background scrollbars lock instantly and prevent disorienting background movements.
+      </p>
+      <div class="dummy-cards-grid">
+        <div class="dummy-card">
+          <h3>1. Backdrop Dimming</h3>
+          <p>Creates immediate focal hierarchy by obscuring inactive background elements with a dark semi-transparent veil.</p>
+        </div>
+        <div class="dummy-card">
+          <h3>2. Multi-Vector Dismissal</h3>
+          <p>Accommodates diverse user preferences by supporting close icon buttons, clicking off the modal, or striking Escape.</p>
+        </div>
+        <div class="dummy-card">
+          <h3>3. Accessibility Focus Trapping</h3>
+          <p>Ensures screen readers and keyboard users cannot tab behind the active overlay into obscured viewport areas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal Dialog Overlay Backdrop -->
+    <div 
+      class="modal-backdrop" 
+      id="modalBackdrop" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="modalTitle" 
+      aria-describedby="modalDesc" 
+      aria-hidden="true"
+    >
+      <!-- Centered Modal Dialog Box -->
+      <div class="modal-dialog" id="modalDialog" tabindex="-1">
+        <!-- Close Button (Icon) -->
+        <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal dialog">&times;</button>
+
+        <div class="modal-header">
+          <div class="modal-icon-badge">&#9993;</div>
+          <h2 class="modal-title" id="modalTitle">Stay Ahead of Web Engineering</h2>
+          <p class="modal-desc" id="modalDesc">
+            Join 35,000+ engineers receiving our weekly breakdown on performance tuning, modern DOM APIs, and CSS architectural patterns.
+          </p>
+        </div>
+
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="input-wrapper">
+            <input 
+              type="email" 
+              id="newsletterEmail" 
+              class="modal-input" 
+              placeholder="Enter your work email address..." 
+              required 
+              autocomplete="email"
+            >
+          </div>
+          <button type="submit" class="btn btn-subscribe" id="subscribeBtn">Subscribe for Free</button>
+          <span class="modal-disclaimer">Zero spam. Instant one-click unsubscribe anytime.</span>
+        </form>
+
+        <div class="modal-success" id="modalSuccess" style="display: none;">
+          <div class="success-icon">&#10003;</div>
+          <h3>You are on the list!</h3>
+          <p>Check your inbox for a confirmation dispatch and developer cheat sheet.</p>
+          <button type="button" class="btn btn-done" id="doneModalBtn">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Subscription Tiers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="pricing-page">
+    <header class="pricing-header">
+      <span class="pricing-tag">Scalable Cloud Architecture</span>
+      <h1 class="pricing-title">Predictable Pricing for High-Growth Teams</h1>
+      <p class="pricing-subtitle">Choose the subscription tier tailored to your development velocity. No surprise usage fees.</p>
+
+      <!-- Billing Cycle Toggle (Flexbox aligned) -->
+      <div class="billing-toggle-container">
+        <span class="billing-label" id="monthlyLabel">Monthly Billing</span>
+        <label class="toggle-switch" for="billingToggle">
+          <input type="checkbox" id="billingToggle" aria-label="Toggle annual billing discount">
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="billing-label" id="annualLabel">
+          Annual Billing 
+          <span class="discount-badge">Save 20%</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- Flexible Box Alignment Pricing Table -->
+    <main class="pricing-flex-container">
+      <!-- Tier 1: Starter -->
+      <div class="pricing-tier-card tier-starter">
+        <div class="card-inner">
+          <div class="tier-header">
+            <h2 class="tier-name">Starter</h2>
+            <p class="tier-description">Essential infrastructure for independent engineers and indie developers.</p>
+          </div>
+
+          <div class="price-container">
+            <span class="currency">$</span>
+            <span class="price-amount" data-monthly="19" data-annual="15">19</span>
+            <span class="price-period">/ user / mo</span>
+          </div>
+          <p class="billing-note" data-note-monthly="Billed monthly" data-note-annual="Billed annually ($180/yr)">Billed monthly</p>
+
+          <ul class="features-list">
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Up to 5 Active Projects</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> 10 GB Encrypted Storage</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Community Forum Support</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Basic Analytics Dashboard</li>
+            <li class="feature-item excluded"><span class="cross-icon">&#10007;</span> Custom Domain SSL</li>
+            <li class="feature-item excluded"><span class="cross-icon">&#10007;</span> SLA Uptime Guarantee</li>
+          </ul>
+
+          <div class="card-footer">
+            <button class="btn btn-tier btn-starter">Get Started</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2: Professional (FEATURED HIGHLIGHTED TIER) -->
+      <div class="pricing-tier-card tier-professional featured">
+        <div class="featured-ribbon">Most Popular</div>
+        <div class="card-inner">
+          <div class="tier-header">
+            <div class="featured-badge-pill">Recommended</div>
+            <h2 class="tier-name">Professional</h2>
+            <p class="tier-description">Advanced capabilities, automated CI/CD pipelines, and scale for growing teams.</p>
+          </div>
+
+          <div class="price-container">
+            <span class="currency">$</span>
+            <span class="price-amount" data-monthly="49" data-annual="39">49</span>
+            <span class="price-period">/ user / mo</span>
+          </div>
+          <p class="billing-note" data-note-monthly="Billed monthly" data-note-annual="Billed annually ($468/yr)">Billed monthly</p>
+
+          <ul class="features-list">
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Unlimited Active Projects</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> 250 GB High-Speed NVMe Storage</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Priority 24/7 Slack &amp; Email Support</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Advanced Real-Time Analytics &amp; Logs</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Automated SSL &amp; Custom Domains</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> 99.9% Uptime Guarantee</li>
+          </ul>
+
+          <div class="card-footer">
+            <button class="btn btn-tier btn-featured">Start 14-Day Free Trial</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 3: Enterprise -->
+      <div class="pricing-tier-card tier-enterprise">
+        <div class="card-inner">
+          <div class="tier-header">
+            <h2 class="tier-name">Enterprise</h2>
+            <p class="tier-description">Bespoke compliance, dedicated clusters, and white-glove onboarding for enterprises.</p>
+          </div>
+
+          <div class="price-container">
+            <span class="currency">$</span>
+            <span class="price-amount" data-monthly="99" data-annual="79">99</span>
+            <span class="price-period">/ user / mo</span>
+          </div>
+          <p class="billing-note" data-note-monthly="Billed monthly" data-note-annual="Billed annually ($948/yr)">Billed monthly</p>
+
+          <ul class="features-list">
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Dedicated Isolated Cluster</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Multi-Region Database Replication</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Dedicated Account Architect</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> SOC2 &amp; HIPAA Compliance Package</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> Custom SSO (SAML, Okta, Azure)</li>
+            <li class="feature-item included"><span class="check-icon">&#10003;</span> 99.99% Financial SLA</li>
+          </ul>
+
+          <div class="card-footer">
+            <button class="btn btn-tier btn-enterprise">Contact Enterprise Sales</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="pricing-bottom-info">
+      <p>Need custom volume seat pricing? <a href="#contact">Schedule an engineering consultation &rarr;</a></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

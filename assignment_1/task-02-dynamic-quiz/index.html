@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Multiple-Choice Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <header class="quiz-header">
+      <div class="badge">Web Development Mastery</div>
+      <h1>Dynamic Multiple-Choice Quiz</h1>
+      <p class="subtitle">Test your foundational web technology knowledge</p>
+    </header>
+
+    <!-- Quiz Progress & Running Score Tracker -->
+    <section class="quiz-meta-bar" aria-label="Quiz status">
+      <div class="meta-item">
+        <span class="meta-label">Question:</span>
+        <span class="meta-val" id="questionProgress">1 of 5</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Running Score:</span>
+        <span class="meta-val score-highlight" id="runningScore">0</span>
+      </div>
+    </section>
+
+    <!-- Main Dynamic Card -->
+    <main class="quiz-card" id="quizCard">
+      <div id="questionContainer">
+        <h2 class="question-text" id="questionText">Loading question...</h2>
+        <div class="options-grid" id="optionsGrid" role="radiogroup" aria-labelledby="questionText">
+          <!-- Dynamic options rendered here -->
+        </div>
+        <div class="feedback-banner" id="feedbackBanner" aria-live="polite"></div>
+      </div>
+
+      <!-- Result Screen (Hidden until finished) -->
+      <div class="result-screen" id="resultScreen" style="display: none;">
+        <div class="result-icon" id="resultIcon">&#127942;</div>
+        <h2 id="resultTitle">Quiz Completed!</h2>
+        <p id="resultFeedback">Here is your performance summary.</p>
+        <div class="score-circle">
+          <span class="final-score" id="finalScoreText">0/5</span>
+          <span class="final-percent" id="finalPercentText">0%</span>
+        </div>
+        <button class="btn btn-restart" id="restartBtn">Retake Quiz</button>
+      </div>
+
+      <footer class="card-footer">
+        <button class="btn btn-next" id="nextBtn" disabled>Next Question &rarr;</button>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
